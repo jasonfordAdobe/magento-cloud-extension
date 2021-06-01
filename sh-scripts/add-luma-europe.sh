@@ -12,6 +12,7 @@ git config user.email "chrome-extension@email.com"
 git config user.name "chrome-extension"
 export COMPOSER_PROCESS_TIMEOUT=600 COMPOSER_MEMORY_LIMIT=-1
 ## Composer add repos
+msg "Adding repos"
 composer config repositories.luma-europe-data-install git git@github.com:jasonfordAdobe/luma-europe-data-install.git
 composer config repositories.luma-europe-new-products-data-install git git@github.com:jasonfordAdobe/luma-europe-new-products-data-install.git
 composer config repositories.luma-europe-nl-nl-data-install git git@github.com:jasonfordAdobe/luma-europe-nl-nl-data-install.git
@@ -24,12 +25,16 @@ composer config repositories.luma-europe-be-fr-data-install git git@github.com:j
 composer config repositories.store-switcher git git@github.com:jasonfordAdobe/magento2-store-switch-all-store-views.git
 
 ## Composer Require B2C Data Install
+msg "Requiring data install module version"
 composer require magentoese/module-data-install:dev-beta-b2c --ignore-platform-reqs
 ## Composer Require Store Switcher (altered version of IMI)
+msg "Requiring alternate store switcher"
 composer require imi/magento2-store-switch-all-store-views:dev-dev-luma-europe --ignore-platform-reqs
 ## Compsoer Require Additional Modules
+msg "Requiring custom modules for commerce"
 composer require jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli --ignore-platform-reqs
 ## Compsoer Require Luma Europe
+msg "Requiring all the Luma Europe stuffs"
 composer require jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
 
 git add composer.*
