@@ -23,7 +23,7 @@ composer config repositories.luma-europe-be-nl-data-install git git@github.com:j
 composer config repositories.luma-europe-be-fr-data-install git git@github.com:jasonfordAdobe/luma-europe-be-fr-data-install.git
 composer config repositories.store-switcher git git@github.com:jasonfordAdobe/magento2-store-switch-all-store-views.git
 ## Disable Modules
-bin/magento module:disable MagentoEse_SwitcherLogos
+$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
 ## Composer Require B2C Data Install
 composer require magentoese/module-data-install:dev-beta-b2c --ignore-platform-reqs
 ## Composer Require Store Switcher (altered version of IMI)
@@ -37,3 +37,5 @@ git add composer.*
 git commit -m "Adding Luma Europe"
 git push
 rm -rf "$tmp_git_dir" # clean up
+
+# curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-1 bash
