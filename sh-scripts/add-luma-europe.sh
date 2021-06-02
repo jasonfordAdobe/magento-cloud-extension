@@ -24,6 +24,10 @@ composer config repositories.luma-europe-be-nl-data-install git git@github.com:j
 composer config repositories.luma-europe-be-fr-data-install git git@github.com:jasonfordAdobe/luma-europe-be-fr-data-install.git
 composer config repositories.store-switcher git git@github.com:jasonfordAdobe/magento2-store-switch-all-store-views.git
 
+## Composer Remove
+msg "Removing Venia to save storage space"
+composer remove magentoese/theme-frontend-venia
+
 ## Composer Require B2C Data Install
 msg "Requiring data install module version"
 ## Composer Require Store Switcher (altered version of IMI)
@@ -31,10 +35,6 @@ msg "Requiring alternate store switcher"
 ## Compsoer Require Additional Modules
 msg "Requiring custom modules for commerce"
 composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe mageplaza/magento-2-swedish-language-pack:dev-master jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
-
-## Composer Remove
-msg "Removing Venia to save storage space"
-composer remove magentoese/theme-frontend-venia
 
 ## Disable Modules
 ##$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
