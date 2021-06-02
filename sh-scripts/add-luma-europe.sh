@@ -39,6 +39,7 @@ sed -i "s/MagentoEse_SwitcherLogos' => 1/MagentoEse_SwitcherLogos' => 0/g" app/e
 
 msg "Adding and committing the git repo"
 git add composer.*
+git add app/etc/config.php
 git commit -m "Adding Luma Europe"
 git push
 rm -rf "$tmp_git_dir" # clean up
