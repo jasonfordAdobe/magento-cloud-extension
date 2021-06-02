@@ -26,7 +26,7 @@ composer config repositories.store-switcher git git@github.com:jasonfordAdobe/ma
 
 ## Composer Remove
 msg "Removing Venia to save storage space"
-composer remove magentoese/theme-frontend-venia
+composer remove magentoese/theme-frontend-venia --ignore-platform-reqs
 
 ## Composer Require B2C Data Install
 msg "Requiring data install module version"
