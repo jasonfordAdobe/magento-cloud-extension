@@ -30,7 +30,7 @@ msg "Requiring data install module version"
 msg "Requiring alternate store switcher"
 ## Compsoer Require Additional Modules
 msg "Requiring custom modules for commerce"
-composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe mageplaza/magento-2-swedish-language-pack jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
+composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe mageplaza/magento-2-swedish-language-pack:dev-master jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
 
 ## Composer Remove
 msg "Removing Venia to save storage space"
@@ -48,4 +48,4 @@ git commit -m "Adding Luma Europe"
 git push
 rm -rf "$tmp_git_dir" # clean up
 
-# curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-1 bash
+# curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,cache-flush.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-1 bash
