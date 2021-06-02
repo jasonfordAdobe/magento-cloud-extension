@@ -37,12 +37,13 @@ composer require jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-ic
 msg "Requiring all the Luma Europe stuffs"
 composer require jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
 
+## Disable Modules
+##$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
+sed -i "s/MagentoEse_SwitcherLogos' => 1/MagentoEse_SwitcherLogos' => 0/g" app/etc/config.php
+
 git add composer.*
 git commit -m "Adding Luma Europe"
 git push
 rm -rf "$tmp_git_dir" # clean up
-
-## Disable Modules
-$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
 
 # curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-1 bash
