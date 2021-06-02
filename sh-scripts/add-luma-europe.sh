@@ -35,7 +35,7 @@ composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-
 ## Disable Modules
 ##$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
 msg "Removing the MagentoEse Switcher module"
-sed -i "s/MagentoEse_SwitcherLogos' => 1/MagentoEse_SwitcherLogos' => 0/g" app/etc/config.php
+perl -i -pe "s/MagentoEse_SwitcherLogos' => 1/MagentoEse_SwitcherLogos' => 0/g" app/etc/config.php
 
 msg "Adding and committing the git repo"
 git add composer.*
