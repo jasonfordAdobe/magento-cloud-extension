@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-: || source lib.sh # trick shellcheck into finding certain referenced vars
+# : || source lib.sh # trick shellcheck into finding certain referenced vars
 
 languageChoiceToggle () {
     local choice=$1
@@ -94,10 +94,10 @@ getComposerRequireString () {
     echo "$REQUIRE_STRING"
 }
 
-msg "Adding Luma Europe vertical..."
+#msg "Adding Luma Europe vertical..."
 
 ## Configure your Luma Europe
-msg "Configure your Luma Europe"
+#msg "Configure your Luma Europe"
 composerRequireString=$( getComposerRequireString )
 
 [[ "$(which composer)" ]] || error "Composer is not installed. You must install composer to continue. https://getcomposer.org/download/"
