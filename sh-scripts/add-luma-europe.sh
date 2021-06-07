@@ -133,7 +133,7 @@ msg "Requiring alternate store switcher"
 msg "Requiring custom modules for commerce"
 composer require mageplaza/magento-2-swedish-language-pack:dev-master
 ## composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
-eval $composerRequireString
+eval "$composerRequireString"
 
 ## Disable Modules
 ##$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
