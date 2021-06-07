@@ -55,7 +55,7 @@ getComposerRequireString () {
                     ;;
                 *) printf '%s\n' 'invalid option';;
             esac
-        done
+        done < /dev/tty
     done
 
     REQUIRE_STRING='composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master'
