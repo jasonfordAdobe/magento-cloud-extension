@@ -1,6 +1,99 @@
 # shellcheck shell=bash
 : || source lib.sh # trick shellcheck into finding certain referenced vars
 
+languageChoiceToggle () {
+    local choice=$1
+    if [[ ${opts[choice]} ]] # toggle
+    then
+        opts[choice]=
+    else
+        opts[choice]=✓
+    fi
+}
+
+getComposerRequireString () {
+    PS3='Please enter your choice: '
+    while :
+    do
+        clear
+        options=("Install All" "be-nl [${opts[2]}]" "be-fr [${opts[3]}]" "de-de [${opts[4]}]" "es-es [${opts[5]}]" "fr-fr [${opts[6]}]" "se-sv [${opts[7]}]" "Install Selected")
+
+        select opt in "${options[@]}"
+        do
+            case $opt in
+                "Install All")
+                    opts=()
+                    languageChoiceToggle 1
+                    break 2
+                    ;;
+                "be-nl [${opts[2]}]")
+                    languageChoiceToggle 2
+                    break
+                    ;;
+                "be-fr [${opts[3]}]")
+                    languageChoiceToggle 3
+                    break
+                    ;;
+                "de-de [${opts[4]}]")
+                    languageChoiceToggle 4
+                    break
+                    ;;
+                "es-es [${opts[5]}]")
+                    languageChoiceToggle 5
+                    break
+                    ;;
+                "fr-fr [${opts[6]}]")
+                    languageChoiceToggle 6
+                    break
+                    ;;
+                "se-sv [${opts[7]}]")
+                    languageChoiceToggle 7
+                    break
+                    ;;
+                "Install Selected")
+                    break 2
+                    ;;
+                *) printf '%s\n' 'invalid option';;
+            esac
+        done
+    done
+
+    REQUIRE_STRING='composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master'
+
+    for opt in "${!opts[@]}"
+    do
+        case $opt in
+            1)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master"
+                ;;
+            2)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-be-nl-data-install:dev-master"
+                ;;
+            3)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-be-fr-data-install:dev-master"
+                ;;
+            4)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-de-de-data-install:dev-master"
+                ;;
+            5)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-es-es-data-install:dev-master"
+                ;;
+            6)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-fr-fr-data-install:dev-master"
+                ;;
+            7)
+                REQUIRE_STRING="${REQUIRE_STRING} jasfordadobe/luma-europe-se-sv-data-install:dev-master"
+                ;;
+            *)
+                printf '%s\n' 'invalid option';;
+        esac
+    done
+
+    REQUIRE_STRING="${REQUIRE_STRING} --ignore-platform-reqs"
+
+    echo "$REQUIRE_STRING"
+}
+
 msg "Adding Luma Europe vertical ..."
 
 [[ "$(which composer)" ]] || error "Composer is not installed. You must install composer to continue. https://getcomposer.org/download/"
@@ -35,7 +128,11 @@ msg "Requiring alternate store switcher"
 ## Compsoer Require Additional Modules
 msg "Requiring custom modules for commerce"
 composer require mageplaza/magento-2-swedish-language-pack:dev-master
-composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
+## composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
+
+composerRequireString=$( getComposerRequireString )
+eval $composerRequireString
+
 
 ## Disable Modules
 ##$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
@@ -49,4 +146,5 @@ git commit -m "Adding Luma Europe"
 git push
 rm -rf "$tmp_git_dir" # clean up
 
-# curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,cache-flush.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-1 bash
+# curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-2 bash
+# curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.31/sh-scripts/{lib.sh,add-grocery.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/testing bash
