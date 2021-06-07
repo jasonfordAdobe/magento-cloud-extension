@@ -13,9 +13,9 @@ languageChoiceToggle () {
 
 getComposerRequireString () {
     PS3='Please enter your choice: '
-    while :
-    do
-        clear
+#    while :
+#    do
+#        clear
         options=("Install All" "be-nl [${opts[2]}]" "be-fr [${opts[3]}]" "de-de [${opts[4]}]" "es-es [${opts[5]}]" "fr-fr [${opts[6]}]" "se-sv [${opts[7]}]" "Install Selected")
 
         select opt in "${options[@]}"
@@ -56,7 +56,7 @@ getComposerRequireString () {
                 *) printf '%s\n' 'invalid option';;
             esac
         done
-    done
+#    done
 
     REQUIRE_STRING='composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master'
 
