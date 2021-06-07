@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# : || source lib.sh # trick shellcheck into finding certain referenced vars
+: || source lib.sh # trick shellcheck into finding certain referenced vars
 
 languageChoiceToggle () {
     local choice=$1
@@ -13,9 +13,9 @@ languageChoiceToggle () {
 
 getComposerRequireString () {
     PS3='Please enter your choice: '
-#    while :
-#    do
-#        clear
+    while :
+    do
+        clear
         options=("Install All" "be-nl [${opts[2]}]" "be-fr [${opts[3]}]" "de-de [${opts[4]}]" "es-es [${opts[5]}]" "fr-fr [${opts[6]}]" "se-sv [${opts[7]}]" "Install Selected")
 
         select opt in "${options[@]}"
@@ -56,7 +56,7 @@ getComposerRequireString () {
                 *) printf '%s\n' 'invalid option';;
             esac
         done
-#    done
+    done
 
     REQUIRE_STRING='composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master'
 
@@ -134,7 +134,6 @@ msg "Requiring custom modules for commerce"
 composer require mageplaza/magento-2-swedish-language-pack:dev-master
 ## composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
 eval $composerRequireString
-
 
 ## Disable Modules
 ##$cmd_prefix "php $app_dir/bin/magento module:disable MagentoEse_SwitcherLogos"
