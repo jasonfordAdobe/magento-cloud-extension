@@ -94,7 +94,11 @@ getComposerRequireString () {
     echo "$REQUIRE_STRING"
 }
 
-msg "Adding Luma Europe vertical ..."
+msg "Adding Luma Europe vertical..."
+
+## Configure your Luma Europe
+msg "Configure your Luma Europe"
+composerRequireString=$( getComposerRequireString )
 
 [[ "$(which composer)" ]] || error "Composer is not installed. You must install composer to continue. https://getcomposer.org/download/"
 
@@ -129,8 +133,6 @@ msg "Requiring alternate store switcher"
 msg "Requiring custom modules for commerce"
 composer require mageplaza/magento-2-swedish-language-pack:dev-master
 ## composer require magentoese/module-data-install:dev-beta-b2c imi/magento2-store-switch-all-store-views:dev-dev-luma-europe jasfordadobe/commerceimprovements jasonfordadobe/pagebuilder-icon jasfordadobe/pagebuilder-anchor jasfordadobe/pagebuilder-animate jasfordadobe/quickcreatecli jasfordadobe/luma-europe-data-install:dev-master jasfordadobe/luma-europe-new-products-data-install:dev-master jasfordadobe/luma-europe-nl-nl-data-install:dev-master jasfordadobe/luma-europe-se-sv-data-install:dev-master jasfordadobe/luma-europe-fr-fr-data-install:dev-master jasfordadobe/luma-europe-es-es-data-install:dev-master jasfordadobe/luma-europe-de-de-data-install:dev-master jasfordadobe/luma-europe-be-nl-data-install:dev-master jasfordadobe/luma-europe-be-fr-data-install:dev-master --ignore-platform-reqs
-
-composerRequireString=$( getComposerRequireString )
 eval $composerRequireString
 
 
@@ -147,4 +149,3 @@ git push
 rm -rf "$tmp_git_dir" # clean up
 
 # curl -sS https://raw.githubusercontent.com/jasonfordAdobe/magento-cloud-extension/vertical-luma-europe/sh-scripts/{lib.sh,add-luma-europe.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/test-2 bash
-# curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.31/sh-scripts/{lib.sh,add-grocery.sh,reindex-on-schedule.sh,reindex.sh,cache-flush.sh,cache-warm.sh} | env ext_ver=0.0.31 tab_url=https://demo.magento.cloud/projects/pa2p6kzfphbvi/environments/testing bash
