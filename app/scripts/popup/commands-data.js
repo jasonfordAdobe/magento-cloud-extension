@@ -201,6 +201,14 @@ const commands = [
     help: 'Add New Grocery Vertical to a Cloud environment.'
   },
   {
+    id: 'add-luma-europe',
+    text: 'Add Luma Europe',
+    scriptsInValue: ['lib.sh', 'add-luma-europe.sh', 'reindex-on-schedule.sh', 'reindex.sh', 'cache-flush.sh', 'cache-warm.sh'],
+    cmdTypes: ['magento'],
+    envTypes: ['cloud', 'vm'],
+    help: 'Add Luma Europe to a Cloud environment.'
+  },
+  {
     id: 'run-all-consumers',
     text: 'Run consumers',
     scriptsInValue: ['lib.sh', 'run-all-consumers.sh'],
